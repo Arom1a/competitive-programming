@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "iostream": "cpp",
+        "__config": "cpp",
+        "string": "cpp",
+        "vector": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled",
+    "C_Cpp.dimInactiveRegions": true,
+    "files.exclude": {
+        "**/*.dSYM": true
+    }
+}
