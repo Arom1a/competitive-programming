@@ -11,6 +11,17 @@ void print_vector(vector<pair<int, int>> my_vec)
     cout << "|\n";
 }
 
+int summation(vector<pair<int, int>> my_vec)
+{
+    int sum = 0;
+    for (auto i : my_vec)
+    {
+        sum += (i.first + i.second);
+    }
+
+    return sum;
+}
+
 int deal_with_double(int row_end, vector<pair<int, int>> &hand)
 {
 loop:
@@ -78,6 +89,7 @@ int main()
             tmp_str = '0' + tmp_str;
         pile.push_back({tmp_str[0] - '0', tmp_str[1] - '0'});
     }
+    pile.push_back({0, 0});
 
     ////////////////////
     // initialization //
@@ -87,12 +99,13 @@ int main()
 outer:
     while (pile.size() != 0)
     {
+        print_vector(hand); // debug
         for (int i = 0; i < hand.size(); i++)
         {
             cout << "i = " << i << '\n'; // debug
             for (int j = 0; j < rows_end.size(); j++)
             {
-                cout << "    hand = " << hand[i].first << " row_num = " << rows_end[row_number] << '\n'; // debug
+                cout << "    hand = " << hand[i].first << " row_end = " << rows_end[row_number] << '\n'; // debug
                 if (hand[i].first == rows_end[row_number])
                 {
                     rows_end[row_number] = hand[i].second;
@@ -113,6 +126,7 @@ outer:
                     row_number = (row_number + 1) % rows_end.size();
                     goto outer;
                 }
+                row_number = (row_number + 1) % rows_end.size();
             }
         }
 
@@ -120,5 +134,6 @@ outer:
         pile.erase(pile.begin()); // This one
         row_number--;
     }
-    print_vector(hand);
+    print_vector(hand); // debug
+    cout << summation(hand) << '\n';
 }
