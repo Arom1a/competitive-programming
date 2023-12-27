@@ -11,6 +11,31 @@ void print_vector(vector<pair<int, int>> my_vec)
     cout << "|\n";
 }
 
+int deal_with_double(int row_end, vector<pair<int, int>> &hand)
+{
+loop:
+    while (true)
+    {
+        for (auto i : hand)
+        {
+            if (i.first == row_end)
+            {
+                row_end = i.second;
+                goto loop;
+            }
+            else if (i.second == row_end)
+            {
+                row_end = i.first;
+                goto loop;
+            }
+        }
+
+        break;
+    }
+
+    return row_end;
+}
+
 int main()
 {
     // string line1, line2, line3, tmp_str;
@@ -32,42 +57,66 @@ int main()
         }
         row_str = tmp_str;
     }
-    vector<int> rows{stoi(row_str[0]), stoi(row_str[1]), stoi(row_str[2]), stoi(row_str[3])};
+
+    vector<int> rows_end(4);
+    for (int i = 0; i < 4; i++)
+    {
+        rows_end[i] = row_str[i] - '0';
+    }
+
     while (ss2 >> tmp_str)
     {
         if (tmp_str.length() == 1)
             tmp_str = '0' + tmp_str;
-        hand.push_back({stoi(tmp_str[0]), stoi(tmp_str[1])});
+        hand.push_back({tmp_str[0] - '0', tmp_str[1] - '0'});
     }
-
     while (ss3 >> tmp_str)
     {
         if (tmp_str.length() == 1)
             tmp_str = '0' + tmp_str;
-        pile.push_back({stoi(tmp_str[0]), stoi(tmp_str[1])});
+        pile.push_back({tmp_str[0] - '0', tmp_str[1] - '0'});
     }
 
-    for (auto i : hand)
-    {
-        for (auto &row : rows)
-        {
-            if (i.first == row)
-            {
-                row = i.second;
-                if (i.first == i.second)
-                {
+    // initialization
 
+    int row_number = 0;
+    while (pile.size() != 0)
+    {
+        for (int i = 0; i < hand.size(); i++)
+        {
+            cout << "i = " << i << '\n';
+            for (int j = 0; j < rows_end.size(); j++, row_number = (row_number+1) % rows_end.size())
+            {
+                cout << "    j = " << j << '\n';
+                if (hand[i].first == rows_end[row_number])
+                {
+                    rows_end[row_number] = hand[i].second;
+                    hand.erase(hand.begin() + i);
+                    if (hand[i].first == hand[i].second)
+                    {
+                        rows_end[row_number] = deal_with_double(rows_end[row_number], hand);
+                        cout << "executed deal with" << '\n';
+                        break;
+                    }
+                    break;
                 }
-            }
-            else if (i.second == row)
-            {
-                row = i.first;
-                break;
-            }
-            else
-            {
-                hand.push_back(pile[0]);
-                pile.erase(pile.begin());
+                else if (hand[i].second == rows_end[row_number])
+                {
+                    rows_end[row_number] = hand[i].first;
+                    hand.erase(hand.begin() + i);
+                    break;
+                }
+                else
+                {
+                    cout << "executed1" << '\n';
+                    hand.push_back(pile.front());
+                    cout << "executed2" << '\n';
+                    print_vector(pile);
+                    cout << pile.size() << '\n';
+                    pile.erase(pile.begin());
+                    cout << "executed3" << '\n';
+                    row_number--;
+                }
             }
         }
     }
