@@ -29,10 +29,10 @@ int summation(const vector<pair<int, int>> &my_vec)
     }
 }
 
-int deal_with_double(int row_end, vector<pair<int, int>> &hand)
+int deal_with_double(int row_end, vector<pair<int, int>> &hand, vector<pair<int, int>> &pile)
 {
-loop:
-    while (true)
+    bool condition = true;
+    while (condition)
     {
         for (int i = 0; i < hand.size(); i++)
         {
@@ -40,17 +40,28 @@ loop:
             {
                 row_end = hand[i].second;
                 hand.erase(hand.begin() + i);
-                goto loop;
+                condition = false;
+                break;
             }
             else if (hand[i].second == row_end)
             {
                 row_end = hand[i].first;
                 hand.erase(hand.begin() + i);
-                goto loop;
+                condition = false;
+                break;
             }
         }
 
-        break;
+        if (condition && pile.size() != 0)
+        {
+            hand.push_back(pile.front());
+            pile.erase(pile.begin());
+            print_vector(hand); // debug
+        }
+        if (pile.size() == 0)
+        {
+            condition = false;
+        }
     }
 
     return row_end;
@@ -110,7 +121,7 @@ outer:
     cout << boolalpha; // debug
     while (pile.size() != 0 && hand.size() != 0)
     {
-        // print_vector(hand);            // debug
+        print_vector(hand); // debug
         // cout << (hand.size()) << '\n'; // debug
         // cout << "row2: " << rows_end[1] << '\n'; // debug
         // cout << "            row1: " << rows_end[0] << '\n';    // debug
@@ -129,12 +140,15 @@ outer:
                 if (hand[i].first == rows_end[row_number])
                 {
                     rows_end[row_number] = hand[i].second;
+                    // cout << i << '\n'; // debug
+                    // cout << hand[i].first << ' ' << hand[i].second << '\n'; // debug
+                    int first = hand[i].first, second = hand[i].second;
                     hand.erase(hand.begin() + i);
                     // cout << "executed\n"; // debug
-                    if (hand[i].first == hand[i].second)
+                    if (first == second)
                     {
-                        rows_end[row_number] = deal_with_double(rows_end[row_number], hand);
-                        // cout << "executed deal with" << '\n'; // debug
+                        cout << "executed deal with" << '\n'; // debug
+                        rows_end[row_number] = deal_with_double(rows_end[row_number], hand, pile);
                     }
                     row_number = (row_number + 1) % rows_end.size();
                     // cout << "first" << '\n'; // debug
