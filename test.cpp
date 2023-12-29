@@ -56,7 +56,7 @@ int deal_with_double(int row_end, vector<pair<int, int>> &hand, vector<pair<int,
         {
             hand.push_back(pile.front());
             pile.erase(pile.begin());
-            print_vector(hand); // debug
+            // print_vector(hand); // debug
         }
         if (pile.size() == 0)
         {
@@ -118,40 +118,40 @@ int main()
 
     int row_number = 0;
 outer:
-    cout << boolalpha; // debug
+    // cout << boolalpha; // debug
     while (pile.size() != 0 && hand.size() != 0)
     {
-        print_vector(hand); // debug
-        // cout << (hand.size()) << '\n'; // debug
-        // cout << "row2: " << rows_end[1] << '\n'; // debug
-        // cout << "            row1: " << rows_end[0] << '\n';    // debug
-        // cout << "            row2: " << rows_end[1] << '\n';    // debug
-        // cout << "            row3: " << rows_end[2] << '\n';    // debug
-        // cout << "            row4: " << rows_end[3] << '\n';    // debug
+        // print_vector(hand);                                  // debug
+        // cout << (hand.size()) << '\n';                       // debug
+        // cout << "row2: " << rows_end[1] << '\n';             // debug
+        // cout << "            row1: " << rows_end[0] << '\n'; // debug
+        // cout << "            row2: " << rows_end[1] << '\n'; // debug
+        // cout << "            row3: " << rows_end[2] << '\n'; // debug
+        // cout << "            row4: " << rows_end[3] << '\n'; // debug
         for (int i = 0; i < hand.size(); i++)
         {
             // cout << "i = " << i << '\n'; // debug
             for (int j = 0; j < rows_end.size(); j++)
             {
-                // cout << "j = " << j << '\n'; // debug
-                // cout << row_number << '\n'; // debug
+                // cout << "j = " << j << '\n';                                                                    // debug
+                // cout << row_number << '\n';                                                                     // debug
                 // cout << "    hand.first = " << hand[i].second << " row_end = " << rows_end[row_number] << '\n'; // debug
-                // cout << (hand[i].first == rows_end[row_number]) << '\n'; // debug
+                // cout << (hand[i].first == rows_end[row_number]) << '\n';                                        // debug
                 if (hand[i].first == rows_end[row_number])
                 {
                     rows_end[row_number] = hand[i].second;
-                    // cout << i << '\n'; // debug
+                    // cout << i << '\n';                                      // debug
                     // cout << hand[i].first << ' ' << hand[i].second << '\n'; // debug
                     int first = hand[i].first, second = hand[i].second;
                     hand.erase(hand.begin() + i);
                     // cout << "executed\n"; // debug
                     if (first == second)
                     {
-                        cout << "executed deal with" << '\n'; // debug
+                        // cout << "executed deal with" << '\n'; // debug
                         rows_end[row_number] = deal_with_double(rows_end[row_number], hand, pile);
                     }
                     row_number = (row_number + 1) % rows_end.size();
-                    // cout << "first" << '\n'; // debug
+                    // cout << "first" << '\n';                  // debug
                     // cout << "goes to " << row_number << '\n'; // debug
                     goto outer;
                 }
@@ -160,7 +160,7 @@ outer:
                     rows_end[row_number] = hand[i].first;
                     hand.erase(hand.begin() + i);
                     row_number = (row_number + 1) % rows_end.size();
-                    // cout << "second" << '\n'; //debug
+                    // cout << "second" << '\n';                 // debug
                     // cout << "goes to " << row_number << '\n'; // debug
                     goto outer;
                 }
