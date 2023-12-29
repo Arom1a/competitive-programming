@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void print_vector(vector<pair<int, int>> my_vec)
+void print_vector(const vector<pair<int, int>> &my_vec)
 {
     for (auto i : my_vec)
     {
@@ -11,15 +11,22 @@ void print_vector(vector<pair<int, int>> my_vec)
     cout << "|\n";
 }
 
-int summation(vector<pair<int, int>> my_vec)
+int summation(const vector<pair<int, int>> &my_vec)
 {
-    int sum = 0;
-    for (auto i : my_vec)
+    if (my_vec.size() != 0)
     {
-        sum += (i.first + i.second);
-    }
+        int sum = 0;
+        for (auto i : my_vec)
+        {
+            sum += (i.first + i.second);
+        }
 
-    return sum;
+        return sum;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 int deal_with_double(int row_end, vector<pair<int, int>> &hand)
@@ -51,12 +58,15 @@ loop:
 
 int main()
 {
-    // string line1, line2, line3, tmp_str;
-    // getline(cin, line1);
-    // getline(cin, line2);
-    // getline(cin, line3);
+    string line1, line2, line3, tmp_str;
+    getline(cin, line1);
+    getline(cin, line2);
+    getline(cin, line3);
 
-    string line1 = "5923", line2 = "56 27 73 34 99 45 32 17 64 57 18 11", line3 = "36 92 22 50 82", tmp_str;
+    // string line1 = "5923",
+    //        line2 = "56 27 73 34 99 45 32 17 64 57 18 11",
+    //        line3 = "36 92 22 50 82",
+    //        tmp_str;
     // expected: 16
 
     stringstream ss1(line1), ss2(line2), ss3(line3);
@@ -97,26 +107,38 @@ int main()
 
     int row_number = 0;
 outer:
-    while (pile.size() != 0)
+    cout << boolalpha; // debug
+    while (pile.size() != 0 && hand.size() != 0)
     {
-        print_vector(hand); // debug
+        // print_vector(hand);            // debug
+        // cout << (hand.size()) << '\n'; // debug
+        // cout << "row2: " << rows_end[1] << '\n'; // debug
+        // cout << "            row1: " << rows_end[0] << '\n';    // debug
+        // cout << "            row2: " << rows_end[1] << '\n';    // debug
+        // cout << "            row3: " << rows_end[2] << '\n';    // debug
+        // cout << "            row4: " << rows_end[3] << '\n';    // debug
         for (int i = 0; i < hand.size(); i++)
         {
-            cout << "i = " << i << '\n'; // debug
+            // cout << "i = " << i << '\n'; // debug
             for (int j = 0; j < rows_end.size(); j++)
             {
-                cout << "    hand = " << hand[i].first << " row_end = " << rows_end[row_number] << '\n'; // debug
+                // cout << "j = " << j << '\n'; // debug
+                // cout << row_number << '\n'; // debug
+                // cout << "    hand.first = " << hand[i].second << " row_end = " << rows_end[row_number] << '\n'; // debug
+                // cout << (hand[i].first == rows_end[row_number]) << '\n'; // debug
                 if (hand[i].first == rows_end[row_number])
                 {
                     rows_end[row_number] = hand[i].second;
                     hand.erase(hand.begin() + i);
-                    cout << "executed\n"; // debug
+                    // cout << "executed\n"; // debug
                     if (hand[i].first == hand[i].second)
                     {
                         rows_end[row_number] = deal_with_double(rows_end[row_number], hand);
-                        cout << "executed deal with" << '\n'; // debug
+                        // cout << "executed deal with" << '\n'; // debug
                     }
                     row_number = (row_number + 1) % rows_end.size();
+                    // cout << "first" << '\n'; // debug
+                    // cout << "goes to " << row_number << '\n'; // debug
                     goto outer;
                 }
                 else if (hand[i].second == rows_end[row_number])
@@ -124,6 +146,8 @@ outer:
                     rows_end[row_number] = hand[i].first;
                     hand.erase(hand.begin() + i);
                     row_number = (row_number + 1) % rows_end.size();
+                    // cout << "second" << '\n'; //debug
+                    // cout << "goes to " << row_number << '\n'; // debug
                     goto outer;
                 }
                 row_number = (row_number + 1) % rows_end.size();
@@ -131,9 +155,8 @@ outer:
         }
 
         hand.push_back(pile.front());
-        pile.erase(pile.begin()); // This one
-        row_number--;
+        pile.erase(pile.begin());
     }
-    print_vector(hand); // debug
+    // print_vector(hand); // debug
     cout << summation(hand) << '\n';
 }
