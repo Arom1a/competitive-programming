@@ -56,7 +56,7 @@ int deal_with_double(int row_end, vector<pair<int, int>> &hand, vector<pair<int,
         {
             hand.push_back(pile.front());
             pile.erase(pile.begin());
-            print_vector(hand); // debug
+            // print_vector(hand); // debug
         }
         if (pile.size() == 0)
         {
@@ -121,7 +121,7 @@ outer:
     cout << boolalpha; // debug
     while (pile.size() != 0 && hand.size() != 0)
     {
-        print_vector(hand); // debug
+        // print_vector(hand); // debug
         // cout << (hand.size()) << '\n'; // debug
         // cout << "row2: " << rows_end[1] << '\n'; // debug
         // cout << "            row1: " << rows_end[0] << '\n';    // debug
@@ -147,7 +147,7 @@ outer:
                     // cout << "executed\n"; // debug
                     if (first == second)
                     {
-                        cout << "executed deal with" << '\n'; // debug
+                        // cout << "executed deal with" << '\n'; // debug
                         rows_end[row_number] = deal_with_double(rows_end[row_number], hand, pile);
                     }
                     row_number = (row_number + 1) % rows_end.size();
