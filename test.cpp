@@ -29,7 +29,7 @@ int summation(const vector<pair<int, int>> &my_vec)
     }
 }
 
-int deal_with_double(int row_end, vector<pair<int, int>> &hand, vector<pair<int, int>> &pile)
+void deal_with_double(int &row_end, vector<pair<int, int>> &hand, vector<pair<int, int>> &pile)
 {
     bool condition = true;
     while (condition)
@@ -63,8 +63,6 @@ int deal_with_double(int row_end, vector<pair<int, int>> &hand, vector<pair<int,
             condition = false;
         }
     }
-
-    return row_end;
 }
 
 int main()
@@ -148,7 +146,7 @@ outer:
                     if (first == second)
                     {
                         // cout << "executed deal with" << '\n'; // debug
-                        rows_end[row_number] = deal_with_double(rows_end[row_number], hand, pile);
+                        deal_with_double(rows_end[row_number], hand, pile);
                     }
                     row_number = (row_number + 1) % rows_end.size();
                     // cout << "first" << '\n';                  // debug
