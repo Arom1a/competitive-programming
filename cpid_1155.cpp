@@ -37,7 +37,7 @@ int main()
     long long ans = 0;
     for (int i = 0; i < N; i++)
     {
-        long long l = 0, r = 0, wtf=0;
+        long long l = 0, r = 0;
         for (int j = i - 1; j > 0 - 1; j--)
         {
             if (c[j] != c[i])
@@ -53,7 +53,7 @@ int main()
                 break;
         }
         // cout << l << ' ' << r << '\n'; // debug
-        ans += l * r + max(l - 1, wtf) + max(r - 1, wtf);
+        ans += l * r + max(l - 1, (long long)0) + max(r - 1, (long long)0);
     }
     cout << ans << '\n';
 }
