@@ -1,5 +1,6 @@
 #include "bits/stdc++.h"
 
+typedef long long ll;
 using namespace std;
 
 // void print_vector(const vector<> &my_vec)
