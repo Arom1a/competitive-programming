@@ -11,9 +11,9 @@ int main()
 
     while (T--)
     {
-        ll S;
+        string S;
         cin >> S;
-        char ans = S % 10 == 0 ? 'E' : 'B';
+        char ans = S.back() == '0' ? 'E' : 'B';
         cout << ans << '\n';
     }
     // test
