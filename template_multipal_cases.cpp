@@ -3,26 +3,26 @@
 typedef long long ll;
 using namespace std;
 
-// void print_vector(const vector<> &my_vec)
-// {
-//     for (auto &i : my_vec)
-//     {
-//         cout << i << ' ';
-//     }
-//     cout << '\n';
-// }
+template <typename T>
+void print_vector(const vector<T> &my_vec)
+{
+    for (const T &i : my_vec)
+        cout << i << '\n';
+    cout << endl;
+}
 
-// // test
-// int N = ;
-// vector<int> c{};
-// // expected:
-
-int N, Q;
 int main()
 {
     // input
+    int N, Q;
     cin >> N >> Q;
 
+    // test
+    // vector<int> c{};
+    // int Q = 1, N = c.size();
+    // expected:
+
+    // answer below
     while (Q--)
     {
         vector<int> c(N);
@@ -30,7 +30,6 @@ int main()
         {
         }
 
-        // answer below
         int ans = 0;
 
         cout << ans << '\n';
