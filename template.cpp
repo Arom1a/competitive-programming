@@ -11,15 +11,15 @@ void print_vector(const vector<T> &my_vec)
     cout << endl;
 }
 
+int N;
+vector<int> c(N);
+
 int main()
 {
     // input
-    int N;
     cin >> N;
-    vector<int> c(N);
     for (int i = 0; i < N; i++)
-    {
-    }
+        cin >> c[i];
 
     // test
     // int N = ;
