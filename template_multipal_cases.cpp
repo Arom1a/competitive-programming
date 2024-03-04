@@ -7,7 +7,7 @@ template <typename T>
 void print_vector(const vector<T> &my_vec)
 {
     for (const T &i : my_vec)
-        cout << i << '\n';
+        cout << i << ' ';
     cout << endl;
 }
 
