@@ -12,8 +12,8 @@ void print_vector(const std::vector<T> &my_vec)
 int main()
 {
     std::vector<int> sample{1, 2, 3, 4, 5};
-    std::vector<int> sum(5);
-    std::partial_sum(sample.rbegin(), sample.rend(), sum.rbegin());
+    std::vector<int> sum(sample.size() + 1);
+    std::partial_sum(sample.rbegin(), sample.rend(), sum.rbegin() + 1);
     print_vector(sum);
     // sum [0,3): 1+2+3 = 6
     // sum [0,2]
