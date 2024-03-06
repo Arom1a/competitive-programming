@@ -1,44 +1,30 @@
 // https://cses.fi/problemset/task/1668
 #include "bits/stdc++.h"
 
-typedef long long ll;
 using namespace std;
 
-template <typename T>
-void print_vector(const vector<T> &my_vec) {
-    for (const T &i : my_vec)
-        cout << i << ' ';
-    cout << endl;
-}
-
-int MAX_N = 1e5 + 1;
-vector<vector<int>> f_adj(MAX_N);  // friendship
-vector<bool> visited(MAX_N);
+const int MAX_N = 1e5 + 1;
+array<vector<int>, MAX_N> f_adj;
 vector<int> group_list(MAX_N);
 bool condition = true;
 
-int opposite(int input) {
-    if (input == 1)
-        return 2;
-    return 1;
-}
-
-void dfs(int node, const int ori_group_num) {
-    if (visited[node] == true) {
-        if (group_list[node] == ori_group_num) {
-            condition = false;
-            cout << "IMPOSSIBLE" << '\n';
-        }
+void dfs(int node, int group) {
+    if (group_list[node] != 0)
         return;
+    group_list[node] = group;
+    int next_group = group % 2 + 1;
+    for (int child : f_adj[node]) {
+        // cout << child << '\n';  // debug
+        if (group_list[child] == group) {
+            condition = false;
+            return;
+        }
+        if (group_list[child] == 0)
+            dfs(child, next_group);
     }
-    visited[node] = true;
-    group_list[node] = opposite(ori_group_num);
-    for (const int &child : f_adj[node])
-        dfs(child, group_list[node]);
 }
 
 int main() {
-    // input
     int n, m;
     cin >> n >> m;
     for (int i = 0; i < m; i++) {
@@ -48,23 +34,19 @@ int main() {
         f_adj[b].push_back(a);
     }
 
+    // cout << "executed" << '\n';  // debug
+
     for (int i = 1; i <= n && condition; i++) {
-        if (group_list[i] == 0) {
-            group_list[i] = 1;
-            for (const int &child : f_adj[i])
-                dfs(child, group_list[i]);
-        }
+        dfs(i, 1);
     }
 
-    // test
-    // int n = ;
-    // vector<int> f_adj{};
-    // expected:
-
-    // answer below
-
-    if (condition == true)
-        for (const int &i : group_list)
-            if (i != 0)
-                cout << i << ' ';
+    if (!condition) {
+        cout << "IMPOSSIBLE" << '\n';
+    } else {
+        cout << group_list[1];
+        for (int i = 2; i <= n; i++) {
+            cout << ' ' << group_list[i];
+        }
+        cout << '\n';
+    }
 }
