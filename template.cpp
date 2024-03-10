@@ -4,22 +4,20 @@ typedef long long ll;
 using namespace std;
 
 template <typename T>
-void print_vector(const vector<T> &my_vec)
-{
+void print_vector(const vector<T> &my_vec) {
     for (const T &i : my_vec)
         cout << i << ' ';
     cout << endl;
 }
 
-int N;
-vector<int> c(N);
-
-int main()
-{
+int main() {
     // input
+    int N;
     cin >> N;
-    for (int i = 0; i < N; i++)
+    vector<int> c(N);
+    for (int i = 0; i < N; i++) {
         cin >> c[i];
+    }
 
     // test
     // int N = ;

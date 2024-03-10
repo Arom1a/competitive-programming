@@ -30,14 +30,12 @@ int main() {
     int ans = 0;
 
     sort(c.begin(), c.end(),
-         [](pair<int, int> &a, pair<int, int> &b) { return a.second() < b.second(); });
-    int current_time = -1,
-        end_time = *max_element(c.begin(), c.end(), [](pair<int, int> &a, pair<int, int> &b) {
-            return a.second() < b.second();
-        });
+         [](pair<int, int> &a, pair<int, int> &b) { return a.second < b.second; });
+    int current_time = -1;
     for (int i = 0; i < n; i++) {
-        if (c[i].second() > current_time) {
-            current_time = c[i].second();
+        if (current_time <= c[i].first) {
+            current_time = c[i].second;
+            ans++;
         }
     }
 
