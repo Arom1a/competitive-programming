@@ -15,9 +15,6 @@ int main() {
     int n;
     cin >> n;
     vector<ll> blocks(n);
-    for (ll &i : blocks) {
-        cin >> i;
-    }
 
     // test
     // int n = ;
@@ -25,32 +22,19 @@ int main() {
     // expected:
 
     // answer below
-    vector<stack<ll>> towers;
-    stack<ll> first_block;
-    first_block.push(blocks[0]);
-    towers.push_back(first_block);
-    blocks.erase(blocks.begin());
-    // print_vector(blocks);
-
-    for (ll &b : blocks) {
-        pair<ll, ll> min_diff_p = make_pair(-1, INT_MAX);  // position, diff
-        for (ll i = 0; i < towers.size(); i++) {
-            ll top = towers[i].top(), diff = top - b;
-            // cout << "wtf" << '\n';  // debug
-            // cout << b << '\n';  // debug
-            if (0 < diff && diff < min_diff_p.second) {
-                min_diff_p = make_pair(i, diff);
-            }
-        }
-        if (min_diff_p.first == -1) {
-            stack<ll> tmp_stack;
-            tmp_stack.push(b);
-            towers.push_back(tmp_stack);
+    int ans = 0;
+    vector<ll> tower_tops;
+    for (int i = 0; i < n; i++) {
+        ll b;
+        cin >> b;
+        auto place = upper_bound(tower_tops.begin(), tower_tops.end(), b);
+        if (place == tower_tops.end()) {
+            tower_tops.push_back(b);
         } else {
-            towers[min_diff_p.first].push(b);
+            *place = b;
         }
     }
+    ans = tower_tops.size();
 
-    int ans = towers.size();
     cout << ans << '\n';
 }
