@@ -24,7 +24,7 @@ int main() {
         adj[tmp].push_back(i);
     }
     dfs(1, 0);
-    for (int i = 0; i < n; i++) {
-        cout << ans[i + 1] - 1 << ' ';
+    for (int i = 1; i <= n; i++) {
+        cout << ans[i] - 1 << " \n"[i == n];
     }
 }
