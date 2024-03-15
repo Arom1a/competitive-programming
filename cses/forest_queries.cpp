@@ -1,4 +1,5 @@
 // https://cses.fi/problemset/task/1652
+// prefix sum
 
 // TODO: You can still make the algorithm better!!!!!!
 // TODO: You can still make the algorithm better!!!!!!

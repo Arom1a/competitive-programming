@@ -1,4 +1,6 @@
 // https://cses.fi/problemset/task/1619
+// sorting and searching
+
 #include "bits/stdc++.h"
 
 typedef long long ll;

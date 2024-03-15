@@ -1,3 +1,6 @@
+// https://cses.fi/problemset/task/1074
+// greedy algorithm
+
 #include "bits/stdc++.h"
 
 typedef long long ll;

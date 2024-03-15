@@ -1,4 +1,6 @@
 // https://cses.fi/problemset/task/1668
+// graph traversal
+
 #include "bits/stdc++.h"
 
 using namespace std;
