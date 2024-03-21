@@ -4,7 +4,8 @@
         "__config": "cpp",
         "string": "cpp",
         "vector": "cpp",
-        "array": "cpp"
+        "array": "cpp",
+        "queue": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "C_Cpp.dimInactiveRegions": true,
