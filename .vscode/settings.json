@@ -1,15 +1,14 @@
 {
-    "files.associations": {
-        "iostream": "cpp",
-        "__config": "cpp",
-        "string": "cpp",
-        "vector": "cpp",
-        "array": "cpp",
-        "queue": "cpp"
-    },
-    "C_Cpp.errorSquiggles": "disabled",
-    "C_Cpp.dimInactiveRegions": true,
-    "files.exclude": {
-        "**/*.dSYM": true
-    }
+  "files.associations": {
+    "iostream": "cpp",
+    "string": "cpp",
+    "vector": "cpp",
+    "array": "cpp",
+    "queue": "cpp"
+  },
+  "C_Cpp.errorSquiggles": "disabled",
+  "C_Cpp.dimInactiveRegions": true,
+  "files.exclude": {
+    "**/*.dSYM": true
+  }
 }
