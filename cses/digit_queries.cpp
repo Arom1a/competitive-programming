@@ -1,5 +1,6 @@
 // https://cses.fi/problemset/task/2431/
-// using the pow() function will cause a hugh problem when dealing with large numbers!!!
+// #math
+// lesson: using the pow() function will cause a hugh problem when dealing with large numbers!!!
 
 #include "bits/stdc++.h"
 #define all(a) a.begin(), a.end()
