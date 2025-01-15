@@ -1,4 +1,4 @@
-// https://cses.fi/problemset/submit/1682/
+// https://cses.fi/problemset/task/1682
 // #directed graph, #SCC, #strongly connected components
 // lesson: using the reverse of a directed graph could be helpful
 
