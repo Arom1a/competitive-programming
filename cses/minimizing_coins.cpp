@@ -1,6 +1,6 @@
 // https://cses.fi/problemset/task/1634
 // #dinamic programming
-// lession: start from the beginning, not back tracing
+// lesson: start from the beginning, not back tracing
 
 #include "bits/stdc++.h"
 

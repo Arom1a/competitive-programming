@@ -1,6 +1,6 @@
 // https://cses.fi/problemset/task/1091
 // #multiset
-// lession: learn how to use multiset
+// lesson: learn how to use multiset
 
 #include "bits/stdc++.h"
 

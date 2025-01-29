@@ -1,6 +1,6 @@
 // https://cses.fi/problemset/task/1633
 // #dynamic programming
-// lession:
+// lesson:
 
 #include "bits/stdc++.h"
 
