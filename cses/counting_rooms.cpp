@@ -1,4 +1,4 @@
-// https://cses.fi/problemset/task/1192/
+// https://cses.fi/problemset/task/1192
 // #graph
 // lesson: in a graph where u can go up, right, down, and left, u can surround it with walls of 0s for eazy edge handling
 
