@@ -21,24 +21,25 @@ count = len(nums)
 
 
 def find(i):
-    if i == uf[i]:
-        return i
-    uf[i] = find(uf[i])
+    if uf[i] != i:
+        # path compression
+        uf[i] = find(uf[i])
     return uf[i]
 
 
 def union(i, j):
     global count
-    ri = find(i)
-    rj = find(j)
+    ri, rj = find(i), find(j)
     if ri == rj:
         return
+    # union by size
     if size[ri] < size[rj]:
         uf[ri] = rj
         size[rj] += size[ri]
     else:
         uf[rj] = ri
         size[ri] += size[rj]
+    # counting connected groups
     count -= 1
 
 
