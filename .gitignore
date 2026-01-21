@@ -1,6 +1,7 @@
 .DS_Store
 
-bin/
+.build/*
+input.txt
 
 t.cpp
 t.py
