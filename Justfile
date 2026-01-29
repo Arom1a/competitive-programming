@@ -8,6 +8,7 @@ build_dir := justfile_directory() + "/.build"
 source_dir := invocation_directory()
 
 
+alias n := new
 new target:
     #!/usr/bin/env bash
     set -e
@@ -27,6 +28,7 @@ new target:
     echo -e "\033[1;32m[Created] $NAME.cpp\033[0m"
 
 
+alias b := build
 build target:
     #!/usr/bin/env bash
     set -e
@@ -47,6 +49,7 @@ build target:
     fi
 
 
+alias r := run
 run target: (build target)
     #!/usr/bin/env bash
     set -e
