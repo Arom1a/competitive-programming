@@ -25,24 +25,24 @@ void solve() {
     int N, M;
     cin >> N >> M;
 
-    vector<array<ll, 2>> abs(M);
+    vector<array<ll, 2>> ABs(M);
     for (int i = 0; i < M; i++) {
         ll a, b;
         cin >> a >> b;
-        abs[i] = {a, b};
+        ABs[i] = {a, b};
     }
-    sort(all(abs));
+    sort(all(ABs));
 
-    ll lo, hi, m;
-    lo = 1;
-    hi = abs.back()[1];
-    while (lo + 1 < hi) {
-        m = lo + (hi - lo) / 2;
-        if (test(m, abs, N)) lo = m;
-        else hi = m;
+    ll ok, ng, m;
+    ok = 1;
+    ng = ABs.back()[1] + 1;
+    while (abs(ok - ng) > 1) {
+        m = (ok + ng) / 2;
+        if (test(m, ABs, N)) ok = m;
+        else ng = m;
     }
 
-    cout << hi - 1 << '\n';
+    cout << ok << '\n';
 }
 
 int main() {

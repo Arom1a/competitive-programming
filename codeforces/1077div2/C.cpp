@@ -61,16 +61,16 @@ void solve() {
         return;
     }
 
-    int lo, hi, m;
-    lo = 0;
-    hi = 1e9 + 1;
+    int ok, ng, m;
+    ok = 0;
+    ng = 1e9 + 1;
 
-    while (lo + 1 < hi) {
-        m = lo + (hi - lo) / 2;
-        if (test(m, n, as, sort_as)) lo = m;
-        else hi = m;
+    while (abs(ok - ng) > 1) {
+        m = (ok + ng) / 2;
+        if (test(m, n, as, sort_as)) ok = m;
+        else ng = m;
     }
-    cout << hi - 1 << '\n';
+    cout << ok << '\n';
 }
 
 int main() {
