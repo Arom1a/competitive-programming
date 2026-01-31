@@ -23,8 +23,9 @@ new target:
     NAME="${FILENAME%.cpp}"
     TEMPLATE_PATH="{{root_dir}}/templates/template.cpp"
     NEW_FILE="{{source_dir}}/$NAME.cpp"
+    NEW_INPUT="{{source_dir}}/$NAME.in"
 
-    # Check if already exist
+    # Check if already exists
     if [ -f "$NEW_FILE" ]; then
         echo -e "\033[1;31m[Error] File already exists: $NEW_FILE\033[0m"
         exit 1
@@ -32,6 +33,7 @@ new target:
 
     cp "$TEMPLATE_PATH" "$NEW_FILE"
     echo -e "\033[1;32m[Created] $NAME.cpp\033[0m"
+    touch "$NEW_INPUT"
 
 
 alias b := build
@@ -65,12 +67,12 @@ run target: (build target)
     SRC_PATH="{{source_dir}}/$NAME.cpp"
     PATH_MDSUM=`echo "$SRC_PATH" | md5sum | awk '{print $1}'`
     BIN_PATH="{{build_dir}}/${NAME}_${PATH_MDSUM}"
-    INPUT_PATH="{{source_dir}}/input.txt"
+    INPUT_PATH="{{source_dir}}/$FILENAME.in"
 
     echo -e "\033[1;32m[Running] $NAME...\033[0m"
 
     if [ -f "$INPUT_PATH" ]; then
-        echo -e "\033[0;33m(Reading from input.txt)\033[0m"
+        echo -e "\033[0;33m(Reading from $NAME.in)\033[0m"
         "$BIN_PATH" < "$INPUT_PATH"
     else
         echo -e "\033[0;33m(Reading from terminal)\033[0m"
