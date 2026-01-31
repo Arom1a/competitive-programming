@@ -8,6 +8,12 @@ build_dir := justfile_directory() + "/.build"
 source_dir := invocation_directory()
 
 
+alias t := template
+template:
+    #!/usr/bin/env zsh
+    alacritty --working-directory "{{root_dir}}/templates" -e "nvim" "." &
+
+
 alias n := new
 new target:
     #!/usr/bin/env bash
@@ -36,9 +42,9 @@ build target:
     mkdir -p "{{build_dir}}"
     FILENAME="{{target}}"
     NAME="${FILENAME%.cpp}"
-    BIN_PATH="{{build_dir}}/$NAME"
     SRC_PATH="{{source_dir}}/$NAME.cpp"
-    INPUT_PATH="{{source_dir}}/input.txt"
+    PATH_MDSUM=`echo "$SRC_PATH" | md5sum | awk '{print $1}'`
+    BIN_PATH="{{build_dir}}/${NAME}_${PATH_MDSUM}"
 
     # Smart Compile (Only if source is newer than binary)
     if [[ ! -f "$BIN_PATH" || "$SRC_PATH" -nt "$BIN_PATH" ]]; then
@@ -56,7 +62,9 @@ run target: (build target)
 
     FILENAME="{{target}}"
     NAME="${FILENAME%.cpp}"
-    BIN_PATH="{{build_dir}}/$NAME"
+    SRC_PATH="{{source_dir}}/$NAME.cpp"
+    PATH_MDSUM=`echo "$SRC_PATH" | md5sum | awk '{print $1}'`
+    BIN_PATH="{{build_dir}}/${NAME}_${PATH_MDSUM}"
     INPUT_PATH="{{source_dir}}/input.txt"
 
     echo -e "\033[1;32m[Running] $NAME...\033[0m"
