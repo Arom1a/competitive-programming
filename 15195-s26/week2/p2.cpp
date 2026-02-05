@@ -37,7 +37,7 @@ void solve() {
     ok = 1;
     ng = ABs.back()[1] + 1;
     while (abs(ok - ng) > 1) {
-        m = (ok + ng) / 2;
+        m = (ok & ng) + ((ok ^ ng) >> 1);
         if (test(m, ABs, N)) ok = m;
         else ng = m;
     }

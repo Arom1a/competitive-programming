@@ -17,8 +17,10 @@ int bs(int ok, int ng, bool (*test)(int)) {
     int m;
 
     while (abs(ok - ng) > 1) {
-        // change when overflow may occur!
-        m = (ok + ng) / 2;
+        // this will rounds towards neg inf
+        // differ from (ok + ng) / 2
+        // use at your own risk
+        m = (ok & ng) + ((ok ^ ng) >> 1);
         if (test(m)) ok = m;
         else ng = m;
     }
