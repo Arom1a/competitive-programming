@@ -2,25 +2,28 @@
 
 using namespace std;
 #define all(a) a.begin(), a.end()
-#define fio                  \
-    ios::sync_with_stdio(0); \
-    cin.tie(NULL)
 template <typename T>
 using vec = vector<T>;
-typedef long long ll;
-typedef vec<int> vi;
-typedef vec<vec<int>> vvi;
-typedef vec<ll> vll;
-typedef vec<vec<ll>> vvll;
-typedef vec<bool> vb;
-typedef vec<vec<bool>> vvb;
-typedef vec<string> vs;
-typedef vec<vec<string>> vvs;
+using ll = long long;
+using vi = vec<int>;
+using vvi = vec<vi>;
+using vll = vec<ll>;
+using vvll = vec<vll>;
+using vb = vec<bool>;
+using vvb = vec<vb>;
+using vc = vec<char>;
+using vvc = vec<vc>;
+using vs = vec<string>;
+using vvs = vec<vs>;
+template <typename T>
+using max_heap = priority_queue<T>;
+template <typename T>
+using min_heap = priority_queue<T, vector<T>, greater<T>>;
 
 void solve() {}
 
 int main() {
-    fio;
+    cin.tie(0)->sync_with_stdio(0);
     int T;
     cin >> T;
     while (T--) {
